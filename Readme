@@ -16,11 +16,18 @@ Creating a package.json file: https://docs.npmjs.com/creating-a-package-json-fil
 
 sudo npm init
 
+sudo npm install --save solc
+
+node compile.js
+
+
+
 
 
 Syntax highlighting for sublime text
 
 https://www.anujvarma.com/package-control-in-sublime-text-setting-up-for-solidity-development/
+
 
 
 web3.js:
