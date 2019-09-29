@@ -13,6 +13,9 @@ sudo npm install npm@latest -g
 npm --version
 
 Creating a package.json file: https://docs.npmjs.com/creating-a-package-json-file
+To reclaim ownership of the .npm directory execute:
+
+sudo chown -R $(whoami) ~/.npm
 
 sudo npm init
 
