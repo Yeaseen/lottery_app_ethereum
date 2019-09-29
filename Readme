@@ -1,0 +1,34 @@
+
+We are building a blockchain based cryptocurrency system.
+
+Install npm and version checking and updagrding to lates version.
+
+
+sudo apt install npm
+
+npm --version
+
+sudo npm install npm@latest -g
+
+npm --version
+
+Creating a package.json file: https://docs.npmjs.com/creating-a-package-json-file
+
+sudo npm init
+
+
+
+Syntax highlighting for sublime text
+
+https://www.anujvarma.com/package-control-in-sublime-text-setting-up-for-solidity-development/
+
+
+web3.js:
+
+https://web3js.readthedocs.io/en/v1.2.1/
+
+solidarity tutorial:
+
+http://www.dappuniversity.com/articles/solidity-tutorial
+
+
