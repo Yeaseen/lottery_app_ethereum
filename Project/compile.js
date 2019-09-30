@@ -40,6 +40,7 @@ var input = {
 
 var output = JSON.parse(solc.compile(JSON.stringify(input)))
 var final = output.contracts['helloContracts.sol']['helloContracts']
-//console.log(final.evm.bytecode);
+//console.log(final.evm.bytecode.object);
 module.exports = final;
+//console.log(final);
 console.log("Hello Beautiful!!");

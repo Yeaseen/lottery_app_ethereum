@@ -3,6 +3,13 @@ We are building a blockchain based cryptocurrency system.
 
 Install npm and version checking and updagrding to lates version.
 
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.3/install.sh | bash
+nvm install node
+node --version
+
+
+if u have multiple versions of python
+//alias python=python2 
 
 sudo apt install npm
 
@@ -21,9 +28,22 @@ sudo npm init
 
 sudo npm install --save solc
 
+Then write the contracts in solidity file and compile with the following command.
+
 node compile.js
 
 
+sudo chown -R $USER:$(id -gn $USER) /home/yeaseen/.config
+
+npm install --save mocha ganache-cli 
+
+
+npm install web3@1.0.0-beta.26 --save
+
+
+write the something.test.js file and change package.json file test with mocha
+
+npm run test
 
 
 
