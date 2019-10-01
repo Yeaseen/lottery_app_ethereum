@@ -13,7 +13,12 @@ const Web3 =require('web3'); // Web3 is a constructor to create instances of web
 //v0.x.x is for callbackss for async code
 //v1.x.x is for promises + async/wait
 
-const web3 = new Web3(ganache.provider()); // we put what network we are dealing with like rinkeby
+//const web3 = new Web3(ganache.provider()); // we put what network we are dealing with like rinkeby
+//update for broken package avobe line
+
+const provider = ganache.provider();
+const web3 = new Web3(provider);
+
 const compiled_contract = require('../compile');
 
 const interface_abi = compiled_contract.abi;
@@ -24,6 +29,7 @@ const bytecode = compiled_contract.evm.bytecode.object;
 
 let accounts;
 let hellocontracts;
+const INITIAL_STRING = 'Hi there';
 
 beforeEach(async () => {
 	//Get a list of all accounts 
@@ -33,16 +39,50 @@ beforeEach(async () => {
 	// Use one of those accounts to deploy the contracty
 
 	hellocontracts = await new web3.eth.Contract(interface_abi)
-	.deploy({ data: bytecode, arguments: ['Hi there!'] })
-	.send({ from: accounts[0], gas: '1000000' });
+	.deploy({ 
+		data: bytecode,
+		arguments: [INITIAL_STRING] 
+	})
+	.send({ 
+		from: accounts[0], 
+		gas: '1000000' 
+	});
+
+	hellocontracts.setProvider(provider);
 
 });
 
 
 describe('helloContracts', () => {
-	it('deploys a contract', () =>{
-		console.log(hellocontracts);
+	
+    //The below block is used to explore the hellocontracts contract methods,adresses
+	//it('deploys a contract', () =>{
+	//	console.log(hellocontracts);
+	//});
+
+	it('checking adresses', () => {
+		assert.ok(hellocontracts.options.address);
 	});
+
+	it('has a default message', async () => {
+		const message = await hellocontracts.methods.name().call();
+		assert.equal(message, INITIAL_STRING);
+
+	});
+
+	it('can change the message', async () => {
+	   await hellocontracts.methods.setName('Bye there').send({ from: accounts[0] });
+
+	   const message = await hellocontracts.methods.name().call();
+	   assert.equal(message, 'Bye there');
+
+	});
+
+
+
+
+
+
 	 
 
 });
@@ -69,6 +109,7 @@ beforeEach( () => {
 	car = new Car();
 
 });
+
 
 describe('Car', () => {
 
