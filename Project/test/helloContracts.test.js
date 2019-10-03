@@ -78,13 +78,6 @@ describe('helloContracts', () => {
 
 	});
 
-
-
-
-
-
-	 
-
 });
 
 

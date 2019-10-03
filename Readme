@@ -47,6 +47,15 @@ npm run test
 
 
 
+infura account at ifura.io and create a deploy.js file in the root of project folder
+
+
+node deploy.js
+
+check rinkeby.etherscan.io: first contract deployed to 0xEDd6D1428E3576E8DB01b912B086569234eCd3D0 
+
+
+
 Syntax highlighting for sublime text
 
 https://www.anujvarma.com/package-control-in-sublime-text-setting-up-for-solidity-development/
