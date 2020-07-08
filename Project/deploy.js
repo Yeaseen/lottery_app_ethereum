@@ -5,10 +5,10 @@ const compiled_contract = require('./compile');
 
 const interface_abi = compiled_contract.abi;
 const bytecode = compiled_contract.evm.bytecode.object;
-
+require("dotenv").config()
 const provider = new HDWalletProvider(
-	'act segment good entry heavy size pizza coil antique upper general dog',
-	'https://rinkeby.infura.io/v3/9e784cb5cc144aafb52becefd7ea75f5'
+	process.env.METAMASK_PNEOMONIC,
+	process.env.INFURA_PROJECT_API
 );
 const web3 = new Web3(provider);
 
@@ -22,7 +22,7 @@ const deploy = async () => {
 	const result = await new web3.eth.Contract(interface_abi)
 	  .deploy({
 	  	data: '0x'+bytecode,
-	  	arguments: ['Hi there!']
+	  	arguments: ['My name is khan']
 	  })
 	  .send({
 	  	gas: '1000000',

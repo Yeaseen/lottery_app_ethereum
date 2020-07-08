@@ -41,7 +41,7 @@ npm install --save mocha ganache-cli
 npm install web3@1.0.0-beta.26 --save
 
 
-write the something.test.js file and change package.json file test with mocha
+write the something test.js file and change package.json file test with mocha
 
 npm run test
 
