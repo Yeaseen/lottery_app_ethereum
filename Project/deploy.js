@@ -5,11 +5,22 @@ const compiled_contract = require('./compile');
 
 const interface_abi = compiled_contract.abi;
 const bytecode = compiled_contract.evm.bytecode.object;
+
+
 require("dotenv").config()
+
+
+// const provider = new HDWalletProvider(
+// 	process.env.METAMASK_PNEOMONIC,
+// 	process.env.INFURA_PROJECT_API
+// );
+
 const provider = new HDWalletProvider(
-	process.env.METAMASK_PNEOMONIC,
-	process.env.INFURA_PROJECT_API
+	'caught flock medal hurt sail noodle seek claw spy basket practice wave',
+	'HTTP://127.0.0.1:7545'
 );
+
+
 const web3 = new Web3(provider);
 
 
