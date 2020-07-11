@@ -35,7 +35,6 @@ const deploy = async () => {
 	  	data: '0x'+bytecode
 	  })
 	  .send({
-	  	gas: '1000000',
 	  	from: accounts[0]
 	  });
 
