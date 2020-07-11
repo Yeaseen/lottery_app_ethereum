@@ -1,6 +1,9 @@
 const HDWalletProvider = require('truffle-hdwallet-provider');
 
-const Web3 =require('web3');
+const Web3 = require('web3');
+
+
+
 const compiled_contract = require('./compile');
 
 const interface_abi = compiled_contract.abi;
@@ -8,7 +11,6 @@ const bytecode = compiled_contract.evm.bytecode.object;
 
 
 require("dotenv").config()
-
 
 const provider = new HDWalletProvider(
 	process.env.METAMASK_PNEOMONIC,
@@ -31,16 +33,22 @@ const deploy = async () => {
 	console.log('Attempting to deploy from account', accounts[0]);
 
 	const result = await new web3.eth.Contract(interface_abi)
-	  .deploy({
-	  	data: '0x'+bytecode
-	  })
-	  .send({
-	  	from: accounts[0]
-	  });
+		.deploy({
+			data: '0x'+bytecode
+		})
+		.send({
+			gas: '1000000',
+			from: accounts[0]
+		});
+    console.log(interface_abi)
+	console.log('Contract deployed to', result.options.address);
 
-    console.log('Contract deployed to', result.options.address);
+	const lottery = new web3.eth.Contract(interface_abi, result.options.address);
 
-    provider.engine.stop();
+	const manager = await lottery.methods.manager().call();
+    console.log(manager)
+
+	provider.engine.stop();
 
 
 };
