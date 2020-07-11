@@ -40,7 +40,6 @@ const SinglePageComponent = () =>{
 
 function App() {
 
-  //web3.eth.getAccounts().then(console.log);
 
   return (
    <SinglePageComponent />

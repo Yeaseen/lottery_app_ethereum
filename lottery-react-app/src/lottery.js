@@ -1,68 +1,80 @@
 import web3 from "./web3";
 
 
+// get the deployment address after deploying to rinkeby network via metamask and rinkeby.infura.io
 const contractAddress = '0x336FdA6b41B0dee3C748419071CAd10b4918dBc7' 
+
+// get the abi from remix -ethereum ide after successfully compling in the latest solidity compiler. 
 
 const abi = [
   {
-    constant: true,
-    inputs: [],
-    name: 'manager',
-    outputs: [ [Object] ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function',
-    signature: '0x481c6a75'
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    constant: false,
-    inputs: [],
-    name: 'pickWinner',
-    outputs: [],
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'function',
-    signature: '0x5d495aea'
+    "inputs": [],
+    "name": "enter",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
   },
   {
-    constant: true,
-    inputs: [],
-    name: 'getPlayers',
-    outputs: [ [Object] ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function',
-    signature: '0x8b5b9ccc'
+    "inputs": [],
+    "name": "getPlayers",
+    "outputs": [
+      {
+        "internalType": "address payable[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    constant: false,
-    inputs: [],
-    name: 'enter',
-    outputs: [],
-    payable: true,
-    stateMutability: 'payable',
-    type: 'function',
-    signature: '0xe97dcb62'
+    "inputs": [],
+    "name": "manager",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    constant: true,
-    inputs: [ [Object] ],
-    name: 'players',
-    outputs: [ [Object] ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function',
-    signature: '0xf71d96cb'
+    "inputs": [],
+    "name": "pickWinner",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    inputs: [],
-    payable: false,
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-    constant: undefined,
-    signature: 'constructor'
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "players",
+    "outputs": [
+      {
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   }
 ]
 
   
   export default new web3.eth.Contract(abi, contractAddress);
+
+
+  

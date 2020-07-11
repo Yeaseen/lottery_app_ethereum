@@ -18,7 +18,7 @@ beforeEach(async () => {
     accounts = await web3.eth.getAccounts();
     //console.log(accounts[0])
 
-    //console.log(interface_abi)
+    console.log(interface_abi)
 
 
 
@@ -31,7 +31,7 @@ beforeEach(async () => {
             gas: '1000000'
         });
 
-        console.log(lottery)
+        //console.log(lottery)
 })
 describe('Lottery Contract', () => {
     it('deploys a contract', () => {

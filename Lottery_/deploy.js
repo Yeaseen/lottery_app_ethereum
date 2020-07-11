@@ -34,7 +34,7 @@ const deploy = async () => {
 
 	const result = await new web3.eth.Contract(interface_abi)
 		.deploy({
-			data: '0x'+bytecode
+			data: "0x"+bytecode
 		})
 		.send({
 			gas: '1000000',
@@ -42,6 +42,8 @@ const deploy = async () => {
 		});
     console.log(interface_abi)
 	console.log('Contract deployed to', result.options.address);
+
+	
 
 	const lottery = new web3.eth.Contract(interface_abi, result.options.address);
 
