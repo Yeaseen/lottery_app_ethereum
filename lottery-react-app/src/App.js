@@ -4,6 +4,7 @@ import './App.css';
 import web3 from './web3'
 import lottery from './lottery'
 import { QRCode } from "react-qr-svg";
+import Swal from "sweetalert2";
 
 const SinglePageComponent = () => {
 
@@ -21,10 +22,7 @@ const SinglePageComponent = () => {
       const manager = await lottery.methods.manager().call();
       //console.log(manager)
       setManagerAddress(manager)
-      const players = await lottery.methods.getPlayers().call();
-      setPlayerList(players)
-      const balance = await web3.eth.getBalance(lottery.options.address)
-      setContractBalance(balance)
+
 
     } catch (err) {
       console.error(err);
@@ -32,18 +30,58 @@ const SinglePageComponent = () => {
 
   }
 
+  const updatePlayersListAndBalance = async () => {
+    const players = await lottery.methods.getPlayers().call();
+    setPlayerList(players)
+    const balance = await web3.eth.getBalance(lottery.options.address)
+    setContractBalance(balance)
+  };
+
   useEffect(() => {
 
     //web3.eth.getAccounts().then(console.log);
     fetchManagerAddress();
+    updatePlayersListAndBalance()
 
     // eslint-disable-next-line
 
   }, [])
 
-  const callEnterF =  () => {
-        alert("WHY SO SERIOUS?")
-        setValue("")
+  const callEnterF = async () => {
+    const accounts = await web3.eth.getAccounts();
+
+    await lottery.methods.enter().send({
+      from: accounts[0],
+      value: web3.utils.toWei(value, "ether")
+    })
+
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Transaction successfully created',
+      showConfirmButton: false,
+      timer: 2500
+    })
+    updatePlayersListAndBalance()
+    setValue("")
+  }
+
+  const pickWinner = async ()=>{
+
+    const accounts = await web3.eth.getAccounts();
+
+    await lottery.methods.pickWinner().send({
+      from:accounts[0]
+    })
+
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'WoW!!! A winner has been picked!',
+      showConfirmButton: false,
+      timer: 2500
+    })
+    updatePlayersListAndBalance()
   }
 
   return (
@@ -84,8 +122,18 @@ const SinglePageComponent = () => {
           />{" "}
         </div>
         <button>Enter</button>
-        <hr />
+
       </form>
+
+      <hr />
+
+      <hr/>
+        <h4>Ready to pick a winner?</h4>
+        <button onClick={(e)=>{
+          e.preventDefault()
+          pickWinner()}}>Pick a winner!</button>
+      <hr/>
+
 
 
     </div>
