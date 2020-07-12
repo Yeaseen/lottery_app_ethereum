@@ -10,15 +10,12 @@ const bytecode = compiled_contract.evm.bytecode.object;
 require("dotenv").config()
 
 
-// const provider = new HDWalletProvider(
-// 	process.env.METAMASK_PNEOMONIC,
-// 	process.env.INFURA_PROJECT_API
-// );
-
 const provider = new HDWalletProvider(
-	'caught flock medal hurt sail noodle seek claw spy basket practice wave',
-	'HTTP://127.0.0.1:7545'
+	process.env.METAMASK_PNEOMONIC,
+	process.env.INFURA_PROJECT_API
 );
+
+
 
 
 const web3 = new Web3(provider);
